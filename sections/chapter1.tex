@@ -1,0 +1,116 @@
+\newpage
+\chapter*{\centering{\MakeUppercase{1. BẮT ĐẦU}}}
+\addcontentsline{toc}{chapter}{\textcolor{fitblue}{\MakeUppercase{1. BẮT ĐẦU}}}
+\noindent \indent Một chiếc máy tính chỉ làm hai việc, và chỉ hai việc mà thôi: nó thực hiện các phép tính và ghi nhớ kết quả của những phép tính đó. Nhưng nó thực hiện hai việc này cực kỳ tốt. Một chiếc máy tính thông thường đặt trên bàn hoặc trong cặp có thể thực hiện khoảng một tỷ phép tính mỗi giây. Thật khó để hình dung tốc độ đó thực sự nhanh đến mức nào. Hãy thử tưởng tượng bạn cầm một quả bóng cách sàn nhà một mét và thả nó ra. Trước khi quả bóng chạm sàn, máy tính của bạn đã có thể thực hiện hơn một tỷ chỉ lệnh.
+
+Về bộ nhớ, một chiếc máy tính nhỏ có thể có hàng trăm gigabyte lưu trữ. Con số đó lớn như thế nào? Nếu một byte (số bit, thường là tám, cần thiết để biểu diễn một ký tự) nặng một gam (thực tế thì không phải vậy), thì 100 gigabyte sẽ nặng 10.000 tấn hệ mét. Để so sánh, con số đó xấp xỉ tổng trọng lượng của 15.000 con voi châu Phi.
+
+Trong phần lớn lịch sử nhân loại, việc tính toán bị giới hạn bởi tốc độ tính toán của bộ não con người và khả năng ghi chép kết quả bằng tay. Điều này có nghĩa là chỉ những vấn đề nhỏ nhất mới có thể được giải quyết bằng phương pháp tính toán. Ngay cả với tốc độ của máy tính hiện đại, vẫn có những vấn đề nằm ngoài khả năng của các mô hình tính toán hiện nay (ví dụ: hiểu về biến đổi khí hậu), nhưng ngày càng có nhiều vấn đề đang chứng minh được tính khả thi đối với các giải pháp tính toán. Hy vọng rằng khi đọc xong cuốn sách này, bạn sẽ cảm thấy thoải mái khi áp dụng tư duy máy tính để giải quyết nhiều vấn đề gặp phải trong quá trình học tập, làm việc và ngay cả trong cuộc sống hàng ngày.
+
+Tư duy máy tính (Computational thinking) có nghĩa là gì?
+
+Mọi kiến thức đều có thể được coi là dạng khai báo (declarative) hoặc mệnh lệnh (imperative). \textbf{Kiến thức khai báo} bao gồm các phát biểu về sự thật. Ví dụ: ``Căn bậc hai của $x$ là một số $y$ sao cho $y * y = x$.'' Đây là một phát biểu sự thật. Tiếc thay, nó không cho chúng ta biết bất cứ điều gì về cách để tìm ra căn bậc hai.
+
+\textbf{Kiến thức mệnh lệnh} là kiến thức về ``cách làm'', hoặc các ``công thức'' (recipes) để suy luận thông tin. Heron của Alexandria là người đầu tiên ghi lại phương pháp tính căn bậc hai của một số. Phương pháp tìm căn bậc hai của một số (gọi là $x$) của ông có thể được tóm tắt như sau:
+
+\begin{itemize}
+    \item Bắt đầu với một giá trị dự đoán, $g$.
+    \item Nếu $g * g$ đủ gần với $x$, dừng lại và kết luận $g$ là đáp án.
+    \item Nếu không, tạo một giá trị dự đoán mới bằng cách lấy trung bình cộng của $g$ và $x/g$, tức là $(g + x/g) / 2$.
+    \item Sử dụng giá trị dự đoán mới này (vẫn gọi là $g$), lặp lại quá trình cho đến khi $g * g$ đủ gần với $x$.
+\end{itemize}
+
+Xét ví dụ tìm căn bậc hai của 25:
+
+\begin{itemize}
+    \item Đặt $g$ bằng một giá trị bất kỳ, ví dụ: 3.
+    \item Chúng ta xác định rằng $3 * 3 = 9$ là chưa đủ gần với 25.
+    \item Đặt $g$ bằng $(3 + 25/3) / 2 = 5,67$.
+    \item Chúng ta xác định rằng $5,67 * 5,67 = 32,15$ vẫn chưa đủ gần với 25.
+    \item Đặt $g$ bằng $(5,67 + 25/5,67) / 2 = 5,04$.
+    \item Chúng ta xác định rằng $5,04 * 5,04 = 25,4$ là đủ gần, nên dừng lại và tuyên bố 5,04 là một xấp xỉ phù hợp cho căn bậc hai của 25.
+\end{itemize}
+
+Lưu ý rằng mô tả về phương pháp này là một chuỗi các bước đơn giản, cùng với một luồng kiểm soát xác định thời điểm thực hiện mỗi bước. Một mô tả như vậy được gọi là \textbf{thuật toán (algorithm)}. Thuật toán này là một ví dụ về thuật toán ``dự đoán và kiểm tra'' (guess-and-check). Nó dựa trên thực tế là việc kiểm tra xem một dự đoán có tốt hay không là rất dễ dàng.
+
+Một cách chính thức hơn, thuật toán là một danh sách hữu hạn các chỉ lệnh mô tả một \textbf{quá trình tính toán} mà khi thực thi trên một tập hợp dữ liệu đầu vào, nó sẽ đi qua một tập hợp các trạng thái được xác định rõ ràng và cuối cùng tạo ra kết quả đầu ra.
+
+Thuật toán hơi giống một công thức nấu ăn:
+
+\begin{itemize}
+    \item Đặt hỗn hợp kem trứng (custard) lên bếp nóng.
+    \item Khuấy.
+    \item Nhúng thìa vào kem trứng.
+    \item Nhấc thìa ra và dùng ngón tay quẹt qua mặt sau của thìa.
+    \item Nếu để lại một vệt sạch, nhấc kem trứng khỏi bếp và để nguội.
+    \item Nếu không, lặp lại.
+\end{itemize}
+
+Nó bao gồm một số phép thử để quyết định khi nào quá trình hoàn tất, cũng như các chỉ lệnh về thứ tự thực hiện, đôi khi sẽ nhảy đến một chỉ lệnh cụ thể dựa trên kết quả của phép thử.
+
+Vậy làm thế nào để hiện thực hóa ý tưởng về một ``công thức'' vào một quy trình cơ khí? Một cách là thiết kế một chiếc máy chuyên biệt chỉ dành riêng cho việc tính căn bậc hai. Nghe có vẻ kỳ lạ, nhưng những chiếc máy tính đầu tiên thực chất là \textbf{các máy tính chương trình cố định (fixed-program computers)}. Điều này có nghĩa là chúng được thiết kế để thực hiện những công việc rất cụ thể, và chủ yếu là công cụ để giải một bài toán toán học nhất định, ví dụ như tính toán quỹ đạo của một quả đạn pháo. Một trong những chiếc máy tính đầu tiên (được xây dựng năm 1941 bởi Atanasoff và Berry) đã giải các hệ phương trình tuyến tính, nhưng không thể làm gì khác.
+
+Cỗ máy Bombe của Alan Turing, được phát triển trong Thế chiến II, được thiết kế nghiêm ngặt cho mục đích giải mã Enigma của Đức. Một số máy tính rất đơn giản ngày nay vẫn sử dụng cách tiếp cận này. Ví dụ, một chiếc máy tính cầm tay đơn giản là một máy tính chương trình cố định. Nó có thể thực hiện các phép tính số học cơ bản, nhưng không thể dùng làm trình soạn thảo văn bản hay để chơi điện tử. Để thay đổi chương trình của một chiếc máy như vậy, người ta phải thay thế toàn bộ hệ thống mạch điện.
+
+Chiếc máy tính thực sự hiện đại đầu tiên là Manchester Mark 1. Nó khác biệt với các thế hệ tiền bối bởi thực tế nó là một \textbf{máy tính lưu trữ chương trình (stored-program computer)}. Loại máy tính này lưu trữ (và xử lý) một chuỗi các chỉ lệnh, và có các thành phần có khả năng thực thi bất kỳ chỉ lệnh nào trong chuỗi đó. Bằng cách tạo ra một kiến trúc tập chỉ lệnh (instruction-set architecture) và chi tiết hóa việc tính toán dưới dạng một chuỗi các chỉ lệnh (tức là một chương trình), chúng ta có được một cỗ máy cực kỳ linh hoạt.
+
+Bằng cách xử lý các chỉ lệnh đó giống như dữ liệu, một máy tính lưu trữ chương trình có thể dễ dàng thay đổi chương trình, và thực hiện việc đó dưới sự kiểm soát của chính chương trình. Thật vậy, ``trái tim'' của máy tính khi đó trở thành một chương trình (được gọi là \textbf{trình thông dịch - interpreter}) có khả năng thực thi bất kỳ tập hợp chỉ lệnh hợp lệ nào, và do đó có thể được sử dụng để tính toán bất cứ thứ gì mà người ta có thể mô tả bằng một tập hợp các chỉ lệnh cơ bản.
+
+Cả chương trình và dữ liệu mà nó xử lý đều nằm trong bộ nhớ. Thông thường, có một bộ đếm chương trình (program counter) trỏ đến một vị trí cụ thể trong bộ nhớ, và quá trình tính toán bắt đầu bằng việc thực thi chỉ lệnh tại điểm đó. Đa số trường hợp, trình thông dịch chỉ đơn giản đi đến chỉ lệnh tiếp theo trong chuỗi, nhưng không phải lúc nào cũng vậy. Trong một số trường hợp, nó thực hiện một phép thử, và dựa trên kết quả của phép thử đó, việc thực thi có thể nhảy đến một điểm khác trong chuỗi chỉ lệnh. Đây được gọi là \textbf{luồng điều khiển (flow of control)}, và nó là yếu tố thiết yếu cho phép chúng ta viết các chương trình thực hiện được những tác vụ phức tạp.
+
+Quay lại với phép ẩn dụ về công thức nấu ăn: với một tập hợp nguyên liệu cố định, một đầu bếp giỏi có thể tạo ra vô số món ăn ngon bằng cách kết hợp chúng theo những cách khác nhau. Tương tự như vậy, với một tập hợp nhỏ các tính năng sơ khai cố định, một lập trình viên giỏi có thể tạo ra vô số chương trình hữu ích. Đây chính là điều khiến lập trình trở thành một nỗ lực tuyệt vời.
+
+Để tạo ra các ``công thức'', hay các chuỗi chỉ lệnh, chúng ta cần một \textbf{ngôn ngữ lập trình} để mô tả chúng—một cách để đưa ra ``mệnh lệnh hành quân'' cho máy tính. Năm 1936, nhà toán học người Anh Alan Turing đã mô tả một thiết bị tính toán giả định mà sau này được gọi là \textbf{Máy Turing vạn năng (Universal Turing Machine)}. Cỗ máy này có một bộ nhớ không giới hạn dưới dạng một ``dải băng'' mà người ta có thể ghi các số 0 và 1, cùng với một số chỉ lệnh sơ khai đơn giản để di chuyển, đọc và ghi lên dải băng đó. Luận đề Church-Turing khẳng định rằng nếu một hàm số là có thể tính toán được (computable), thì một Máy Turing có thể được lập trình để tính toán nó.
+
+Chữ ``nếu'' trong luận đề Church-Turing rất quan trọng. Không phải mọi bài toán đều có giải pháp tính toán. Ví dụ, Turing đã chứng minh rằng không thể viết một chương trình mà khi đưa vào một chương trình $P$ bất kỳ, nó sẽ in ra ``true'' khi và chỉ khi $P$ sẽ chạy mãi mãi. Đây được gọi là \textbf{bài toán dừng (halting problem)}.
+
+Luận đề Church-Turing dẫn trực tiếp đến khái niệm \textbf{tính đầy đủ Turing (Turing completeness)}. Một ngôn ngữ lập trình được coi là đầy đủ Turing nếu nó có thể được dùng để mô phỏng một Máy Turing vạn năng. Tất cả các ngôn ngữ lập trình hiện đại đều đầy đủ Turing. Hệ quả là:
+
+\begin{itemize}
+    \item bất cứ thứ gì có thể lập trình được bằng ngôn ngữ này (ví dụ: Python) đều có thể lập trình được bằng bất kỳ ngôn ngữ nào khác (ví dụ: Java).
+\end{itemize}
+
+Tất nhiên, một số thứ có thể dễ lập trình hơn trong một ngôn ngữ cụ thể, nhưng về cơ bản, tất cả các ngôn ngữ đều bình đẳng về sức mạnh tính toán.
+
+May mắn thay, không lập trình viên nào phải xây dựng chương trình từ các chỉ lệnh sơ khai của Turing. Thay vào đó, các ngôn ngữ lập trình hiện đại cung cấp một tập hợp các lệnh sơ khai lớn hơn và tiện lợi hơn. Tuy nhiên, ý tưởng cốt lõi của lập trình—xem đó là quá trình lắp ráp một chuỗi các thao tác—vẫn luôn là trọng tâm.
+
+Dù bạn có tập hợp các lệnh sơ khai nào, hay bất kể phương pháp sử dụng chúng ra sao, thì điều tốt nhất và điều tồi tệ nhất về lập trình đều giống nhau: máy tính sẽ thực hiện chính xác những gì bạn bảo nó làm. Đây là một điều tốt vì nó có nghĩa là bạn có thể khiến máy tính thực hiện mọi thứ thú vị và hữu ích. Nhưng đó cũng là một điều tồi tệ vì khi nó không làm đúng ý bạn, bạn thường chẳng thể đổ lỗi cho ai khác ngoài chính mình.
+
+Có hàng trăm ngôn ngữ lập trình trên thế giới. Không có ngôn ngữ nào là ``tốt nhất'' (mặc dù người ta có thể đề cử một vài ứng viên cho danh hiệu ``tệ nhất''). Các ngôn ngữ khác nhau sẽ phù hợp hơn hoặc kém hơn cho các loại ứng dụng khác nhau. Ví dụ:
+
+\begin{itemize}
+    \item MATLAB là một ngôn ngữ tốt để xử lý các vectơ và ma trận.
+    \item C là một ngôn ngữ tốt để viết các chương trình điều khiển mạng dữ liệu.
+    \item PHP là một ngôn ngữ tốt để xây dựng các trang web.
+    \item Và Python là một ngôn ngữ vạn năng (general-purpose) tốt.
+\end{itemize}
+
+Mỗi ngôn ngữ lập trình đều có một tập hợp các cấu trúc sơ khai (primitive constructs), cú pháp (syntax), ngữ nghĩa tĩnh (static semantics) và ngữ nghĩa (semantics). Tương tự như một ngôn ngữ tự nhiên (ví dụ: tiếng Anh), các cấu trúc sơ khai là các từ, cú pháp mô tả chuỗi từ nào tạo thành các câu đúng cấu trúc, ngữ nghĩa tĩnh xác định câu nào có ý nghĩa, và ngữ nghĩa xác định ý nghĩa của những câu đó. Các cấu trúc sơ khai trong Python bao gồm \textbf{các giá trị trực tiếp} (\textbf{literals} - ví dụ: số 3.2 và chuỗi `abc`) và \textbf{các toán tử trung tố} (\textbf{infix operators} - ví dụ: + và /).
+
+\textbf{Cú pháp} của một ngôn ngữ xác định chuỗi ký tự và biểu tượng nào là đúng cấu trúc. Ví dụ, trong tiếng Anh, chuỗi ``Cat dog boy.'' không phải là một câu hợp lệ về mặt cú pháp, vì cú pháp tiếng Anh không chấp nhận các câu có dạng <Danh từ> <Danh từ> <Danh từ>. Trong Python, trình tự các lệnh sơ khai 3.2 + 3.2 là đúng cấu trúc cú pháp, nhưng trình tự 3.2 3.2 thì không.
+
+\textbf{Ngữ nghĩa tĩnh} xác định những chuỗi đúng cú pháp nào thực sự mang một ý nghĩa. Ví dụ trong tiếng Anh, chuỗi ``I runs fast'' có dạng <Đại từ> <Động từ> <Trạng từ>, vốn là một trình tự được chấp nhận về mặt cú pháp. Tuy nhiên, nó không phải là tiếng Anh chuẩn vì danh từ ``I'' (tôi) là số ít nhưng động từ ``runs'' lại chia ở dạng số nhiều. Đây là một ví dụ về lỗi ngữ nghĩa tĩnh. Trong Python, trình tự 3.2 / `abc` là đúng cú pháp (dạng <Số> / <Chuỗi>), nhưng lại tạo ra lỗi ngữ nghĩa tĩnh vì việc chia một con số cho một chuỗi ký tự là không có ý nghĩa.
+
+\textbf{Ngữ nghĩa} của một ngôn ngữ gắn kết một ý nghĩa cụ thể với mỗi chuỗi biểu tượng đúng cú pháp và không có lỗi ngữ nghĩa tĩnh. Trong ngôn ngữ tự nhiên, ngữ nghĩa của một câu có thể mơ hồ. Ví dụ, câu ``Tôi không thể khen ngợi sinh viên này quá lời'' (I cannot praise this student too highly) có thể là một lời khen ngợi hết lời hoặc một lời chỉ trích nặng nề. Ngôn ngữ lập trình được thiết kế sao cho mỗi chương trình hợp lệ chỉ có duy nhất một ý nghĩa.
+
+Mặc dù lỗi cú pháp là loại lỗi phổ biến nhất (đặc biệt là đối với những người mới học một ngôn ngữ lập trình mới), chúng lại là loại lỗi ít nguy hiểm nhất. Mọi ngôn ngữ lập trình nghiêm túc đều thực hiện triệt để việc phát hiện các lỗi cú pháp và sẽ không cho phép người dùng thực thi chương trình nếu có dù chỉ một lỗi cú pháp. Hơn nữa, trong hầu hết các trường hợp, hệ thống ngôn ngữ đưa ra chỉ dẫn đủ rõ ràng về vị trí của lỗi để việc sửa lỗi trở nên hiển nhiên.
+
+Tình hình đối với các lỗi ngữ nghĩa tĩnh có phần phức tạp hơn. Một số ngôn ngữ lập trình, ví dụ như Java, thực hiện rất nhiều hoạt động kiểm tra ngữ nghĩa tĩnh trước khi cho phép một chương trình được thực thi. Những ngôn ngữ khác, ví dụ như C và Python (thật đáng tiếc), thực hiện tương đối ít việc kiểm tra ngữ nghĩa tĩnh trước khi chương trình chạy. Tuy nhiên, Python thực hiện một lượng đáng kể việc kiểm tra ngữ nghĩa trong khi đang chạy chương trình.
+
+Người ta thường không nói rằng một chương trình có lỗi ngữ nghĩa. Nếu một chương trình không có lỗi cú pháp và không có lỗi ngữ nghĩa tĩnh, nó mang một ý nghĩa, tức là nó có ngữ nghĩa (semantics). Tất nhiên, điều đó không có nghĩa là nó mang ngữ nghĩa mà người tạo ra nó mong muốn. Khi một chương trình có ý nghĩa khác với những gì người tạo ra nó nghĩ, những điều tồi tệ có thể xảy ra.
+
+Điều gì có thể xảy ra nếu chương trình có lỗi và hành xử theo cách không mong muốn?
+
+\begin{itemize}
+    \item Nó có thể bị sập (crash): tức là ngừng chạy và đưa ra một dấu hiệu hiển nhiên nào đó cho thấy nó đã bị dừng. Trong một hệ thống máy tính được thiết kế đúng cách, khi một chương trình bị sập, nó không gây hư hại cho toàn bộ hệ thống. Tất nhiên, một số hệ thống máy tính rất phổ biến không có đặc tính tốt đẹp này. Hầu như bất kỳ ai sử dụng máy tính cá nhân đều từng chạy một chương trình khiến họ buộc phải khởi động lại toàn bộ máy tính.
+    
+    \item Hoặc nó có thể tiếp tục chạy mãi mãi: chạy và chạy mà không bao giờ dừng lại. Nếu bạn không biết xấp xỉ thời gian chương trình cần để hoàn thành công việc, tình huống này có thể rất khó nhận ra.
+    
+    \item Hoặc nó có thể chạy cho đến khi hoàn thành: nhưng lại tạo ra một kết quả có thể đúng, hoặc không.
+\end{itemize}
+
+Mỗi trường hợp trên đều tệ, nhưng trường hợp cuối cùng chắc chắn là tồi tệ nhất. Khi một chương trình có vẻ như đang làm đúng nhưng thực tế thì không, những hậu quả thảm khốc có thể theo sau: tài sản có thể bị thất thoát, bệnh nhân có thể nhận liều xạ trị gây tử vong, máy bay có thể rơi.
+
+Bất cứ khi nào có thể, các chương trình nên được viết theo cách mà khi chúng hoạt động không đúng, lỗi đó phải tự hiển hiện rõ ràng. Chúng ta sẽ thảo luận về cách thực hiện điều này xuyên suốt cuốn sách.
+
+\noindent \textbf{Bài tập nhỏ:} Máy tính có thể máy móc đến mức gây khó chịu. Nếu bạn không nói cho chúng chính xác những gì bạn muốn chúng làm, chúng có khả năng cao sẽ làm sai. Hãy thử viết một thuật toán để lái xe giữa hai địa điểm. Hãy viết nó theo cách bạn hướng dẫn cho một người bình thường, sau đó tưởng tượng điều gì sẽ xảy ra nếu người đó ``ngốc'' như một chiếc máy tính và thực thi thuật toán chính xác như những gì được viết. Người đó có thể sẽ phải nhận bao nhiêu phiếu phạt giao thông?
